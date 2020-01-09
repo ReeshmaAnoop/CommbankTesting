@@ -8,23 +8,28 @@ using System;
 
 namespace CommbankTesting
 {
-    public class VerifyTravelMoneyOverseas 
+    public class VerifyTravelMoneyOverseas
     {
         IWebDriver driver;
         [SetUp]
         public void LaunchCommbankPage()
         {
-            driver = new ChromeDriver();
-            driver.Navigate().GoToUrl("https://www.commbank.com.au/");        }
-           
+            driver = new ChromeDriver("./Driver/");
+            driver.Navigate().GoToUrl("https://www.commbank.com.au/");
+            driver.Manage().Window.Maximize();
+        }
+
         [TestCase]
-        public void NavigateToTravelProduct()
+        public void VerifyTravelProductAndNetbankLogon()
         {
+            //Launch the Commmbank URL
             CommbankLaunchPage launchPage = new CommbankLaunchPage((RemoteWebDriver)driver);
             launchPage.ClickOnTravelProductLink();
+            //Navigate to Travel Product page and Verify Sublinks
             TravelProductPage travelPage = new TravelProductPage((RemoteWebDriver)driver);
             travelPage.VerifyTravelMoneySubset();
             travelPage.VerifySubLinks();
+            //Navigate to Logon Page and Veriy fields
             NetbankLogon logonPage = new NetbankLogon((RemoteWebDriver)driver);
             logonPage.ClickOnLogon();
             logonPage.VerifyUsernameAndPassword();

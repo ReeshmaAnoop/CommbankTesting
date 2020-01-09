@@ -15,17 +15,18 @@ namespace CommbankTesting.Pages
         {
             _driver = driver;
         }
-        private IWebElement LogonButton => _driver.FindElementByClassName("log-on-text");
-        private IWebElement UsernameTextBox => _driver.FindElementById("txtMyClientNumber_label");
-        private IWebElement PasswordTextBox => _driver.FindElementById("txtMyPassword_label");
+        private IWebElement logonButton => _driver.FindElementByClassName("log-on-text");
+        private IWebElement usernameTextBox => _driver.FindElementById("txtMyClientNumber_field");
+        private IWebElement passwordTextBox => _driver.FindElementById("txtMyPassword_field");
         public void ClickOnLogon()
         {
-            Click(LogonButton);       
+            Click(logonButton);
         }
         public void VerifyUsernameAndPassword()
         {
-            VerifyElement(UsernameTextBox);
-            VerifyElement(PasswordTextBox);
+            _driver.SwitchTo().Frame(0);
+            VerifyElement(usernameTextBox);
+            VerifyElement(passwordTextBox);
         }
     }
 }

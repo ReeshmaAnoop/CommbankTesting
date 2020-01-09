@@ -1,5 +1,6 @@
 ﻿using CommbankTesting.Utility;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Remote;
 using System;
 using System.Collections.Generic;
@@ -12,11 +13,20 @@ namespace CommbankTesting
         RemoteWebDriver _driver;
         public CommbankLaunchPage(RemoteWebDriver driver)
         {
-           _driver = driver;
+            _driver = driver;
         }
-
-        private IWebElement TravelMoneyButton => _driver.FindElementByXPath("//*[@id='products']//div[1]/div[8]//a/div[2]//h3");
-        public void ClickOnTravelProductLink() => Click(TravelMoneyButton);
-
+        private IWebElement travelMoneyButton => _driver.FindElementByLinkText("Travel products");
+        private IWebElement announcemetDismissButton => _driver.FindElementByLinkText("Dismiss");
+        public void ClickOnTravelProductLink()
+        {
+            Actions actions = new Actions(_driver);
+            actions.MoveToElement(travelMoneyButton).Perform();
+            //To close the bushfire announcement popup as it hides travelMoneyButton      
+            if (announcemetDismissButton.Displayed)
+            {
+                Click(announcemetDismissButton);
+            }
+            Click(travelMoneyButton);
+        }
     }
 }

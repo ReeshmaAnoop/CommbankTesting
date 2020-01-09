@@ -14,20 +14,20 @@ namespace CommbankTesting.Pages
         {
             _driver = driver;
         }
-        private IWebElement TravelMoneySubset => _driver.FindElementByLinkText("Travel products");
-        private IWebElement TravelCheckList => _driver.FindElementByLinkText("Travel checklist");
-        private IWebElement Emergency => _driver.FindElementByLinkText("In an emergency");
-        private IWebElement Tools => _driver.FindElementByLinkText("Tools & support");
-        
+        private IWebElement travelMoneySubset => _driver.FindElementByLinkText("Travel products");
+        private IWebElement travelCheckList => _driver.FindElementByLinkText("Travel checklist");
+        private IWebElement emergency => _driver.FindElementByLinkText("In an emergency");
+        private IWebElement tools => _driver.FindElementByLinkText("Tools & support");
+
         public void VerifyTravelMoneySubset()
         {
-            VerifyElement(TravelMoneySubset);
+            VerifyElement(travelMoneySubset);
         }
         public void VerifySubLinks()
         {
-            VerifyElement(TravelCheckList);
-            VerifyElement(Emergency);
-            VerifyElement(Tools);
+            VerifyElement(travelCheckList);
+            VerifyElement(emergency);
+            VerifyElement(tools);
         }
     }
 }

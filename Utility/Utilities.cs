@@ -8,10 +8,10 @@ namespace CommbankTesting.Utility
 {
     public class Utilities
     {
-        public void Click(IWebElement element) => element.Submit();
+        public void Click(IWebElement element) => element.Click();
         public void VerifyElement(IWebElement element)
         {
-            Assert.IsTrue(true,"Element is present",element.Displayed);
+            Assert.IsTrue(true, "Element is present", element.Displayed);
         }
     }
 }
